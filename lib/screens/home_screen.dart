@@ -29,16 +29,27 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Padding(
-            //   padding: const EdgeInsets.only(left: 30, right: 30),
-            //   child: TextField(
-            //     controller: locationController,
-            //     decoration: InputDecoration(hintText: 'Enter Loaction'),
-            //   ),
-            // ),
+            Text(
+              'Weather App',
+              style: TextStyle(
+                  color: Colors.lightBlue,
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 30, right: 30),
+              child: TextField(
+                controller: locationController,
+                decoration: InputDecoration(hintText: 'Enter Loaction'),
+              ),
+            ),
+            SizedBox(height: 30),
             IconButton(
+              tooltip: 'Search',
               onPressed: () async {
-                await context.read<WeatherCubit>().getWeatherData();
+                await context
+                    .read<WeatherCubit>()
+                    .getWeatherData(locationController.text);
               },
               icon: const Icon(
                 Icons.search,
@@ -51,9 +62,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 switch (state) {
                   case InitialWeatherState():
                     return const Text(
-                      'Initial',
+                      'Search Your Current Weather',
                       style: TextStyle(
-                        fontSize: 30,
+                        fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
                     );

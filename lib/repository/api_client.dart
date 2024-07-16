@@ -3,9 +3,9 @@ import 'package:bloc_weather_api/repository/weather_model.dart';
 import 'package:http/http.dart' as http;
 
 class ApiClient {
-  Future<WeatherModel?> getModel() async {
-    const url =
-        'https://api.weatherapi.com/v1/current.json?q=Ahmedabad&key=1bc3b2cbce2d424eb8a51410240107';
+  Future<WeatherModel?> getModel(String cityLocation) async {
+    final url =
+        'https://api.weatherapi.com/v1/current.json?q=$cityLocation&key=1bc3b2cbce2d424eb8a51410240107';
     final uri = Uri.parse(url);
     final response = await http.get(uri);
     try {
